@@ -7,7 +7,6 @@ class Tree:
     self.root = root
 
   def print_level_traversal(self):
-    print(self.root.val, "\n")
 
     Q = collections.deque()
     Q.append(self.root)
@@ -16,16 +15,21 @@ class Tree:
       level = []
       for _ in range(len(Q)):
         n = Q.popleft()
+        level.append(n.val)
+
+        if n.left:
+          Q.append(n.left)
 
         if n.right:
           Q.append(n.right)
-        if n.left:
-          Q.append(n.left)
       self.print_level_helper(level)
   
   def print_level_helper(self, level):
-    print(l + ' ' for l in level)
-    print("\n")
+    acc = ''
+    for l in level:
+      acc += str(l)
+    print(acc)
+      
 
 
         
